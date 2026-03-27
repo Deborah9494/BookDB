@@ -1,0 +1,41 @@
+Un usuario tiene los siguientes atributos: username, fecha de registración, email y password, fecha de nacimiento.
+
+Un usuario (USERS) puede seguir a ninguno o a muchos otros usuarios (relación reflexiva 0..n).
+Se desea mantener el historial completo de estas acciones, por lo que se registran los eventos de follow y unfollow, incluso si un usuario sigue, deja de seguir y vuelve a seguir a otro usuario en distintos momentos.
+
+Un libro (BOOKS) tiene los siguientes atributos:  nombre,  imagen de portada, resumen,  fecha de primera publicación, dirección del fichero.
+Los usuarios pueden interactuar con los libros mediante tres relaciones muchos a muchos:
+- marcar como read (incluyendo si ha terminado de leer el libro),
+- marcar como favorite,
+- marcar como wish to read.
+
+Un autor (AUTHORS) tiene los siguientes atributos: nombre completo (full name), biografía.
+
+Un usuario pertenece en un país, y en un país pueden registrados ninguno o muchos usuarios (relación 1-n). De manera análoga, un autor también pertenece a un país.
+
+Un autor puede corresponder a un único usuario. Cuando un usuario solicita una cuenta de autor, se almacena información adicional asociada a esta relación, como la fecha de verificación. La relación entre AUTHORS y USERS es de tipo 1:1 opcional:
+- un usuario puede ser autor o no,
+- un autor puede tener cuenta de usuario o no.
+Es importante garantizar que un mismo usuario tenga como máximo un registro como autor.
+
+Un libro puede ser escrito por cero o muchos autores, y un autor puede escribir cero o muchos libros. 
+Se permiten coautores y también libros sin autor.
+
+Un libro puede tener uno o muchos géneros, y un género puede estar asociado a cero o muchos libros.
+Además, los usuarios pueden marcar uno o más géneros como favoritos.
+
+Una serie (SERIES) puede tener uno o muchos libros, y un libro puede pertenecer a ninguna o a una serie. Se almacena también el orden del libro dentro de la serie. Pero se debe evitar que dos libros tengan el mismo orden en una serie.
+
+Un libro puede tener cero o muchos libros similares, y un libro puede ser similar a cero o muchos libros. Se desea que se eviten duplicados invertidos.
+
+Un usuario puede asignar valoraciones (ratings) a cero o muchos libros, y un libro puede ser evaluado por cero o muchos usuarios.
+La relación RATE tiene como atributos: rating y rating_date.
+La relación RATE puede tener asociada cero o una reseña (review), con atributos review_text y review_date. Es decir, una valoración puede o no tener reseña.
+Un usuario puede escribir una reseña únicamente si ha realizado previamente una valoración sobre ese libro.
+
+Un usuario puede comentar cero o muchas reseñas, y una reseña puede ser comentada por cero o muchos usuarios.
+Sin embargo, un usuario solo puede comentar una vez cada reseña. Es decir, para una misma reseña, un usuario solo puede aparecer una vez como comentarista.
+
+Un usuario puede poner “like” a cero o muchas reseñas, y cada reseña puede recibir “likes” de cero o muchos usuarios.
+Un usuario también puede poner “like” a cero o muchos comentarios, y cada comentario puede recibir “likes” de cero o muchos usuarios.
+En ambos casos, un usuario solo puede dar un único like a una misma reseña o a un mismo comentario. Es decir, no puede dar múltiples likes al mismo elemento, aunque sí puede haber muchos usuarios dando like al mismo comentario o reseña.
